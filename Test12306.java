@@ -54,6 +54,92 @@ public class Test12306 {
         Thread.sleep(1000);
         takeScreenshot(screenShot);
     }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "北京北,南京,2024-10-14,12306_student_001.png",
+            "北京北,南京,2024-10-15,12306_student_002.png",
+            "北京北,南京,2024-10-20,12306_student_003.png",
+            "北京北,南京,2024-10-29,12306_student_004.png",
+            "北京北,南京,2024-10-30,12306_student_005.png"
+    })
+    public void testSearchStudent(String from,String to,String fromTime,String screenShot) throws InternalError, InterruptedException {
+        WebElement fromField = driver.findElement(By.id("fromStationText"));
+        fromField.sendKeys(from+Keys.ENTER);
+        WebElement toField = driver.findElement(By.id("toStationText"));
+        toField.sendKeys(to+Keys.ENTER);
+        WebElement fromTimeFIeld = driver.findElement(By.id("train_date"));
+        fromTimeFIeld.clear();
+        fromTimeFIeld.sendKeys(fromTime);
+        WebElement StudentButton = driver.findElement(By.xpath("//*[@id=\"isStudentDan\"]/i"));
+        StudentButton.click();
+
+        WebElement query = driver.findElement(By.id("search_one"));
+        query.click();
+
+        driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
+        Thread.sleep(1000);
+        takeScreenshot(screenShot);
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "北京北,南京,2024-10-14,12306_search_gd_001.png",
+            "北京北,南京,2024-10-15,12306_search_gd_002.png",
+            "北京北,南京,2024-10-20,12306_search_gd_003.png",
+            "北京北,南京,2024-10-29,12306_search_gd_004.png",
+            "北京北,南京,2024-10-30,12306_search_gd_005.png"
+    })
+    public void testSearchGd(String from,String to,String fromTime,String screenShot) throws InternalError, InterruptedException {
+        WebElement fromField = driver.findElement(By.id("fromStationText"));
+        fromField.sendKeys(from+Keys.ENTER);
+        WebElement toField = driver.findElement(By.id("toStationText"));
+        toField.sendKeys(to+Keys.ENTER);
+        WebElement fromTimeFIeld = driver.findElement(By.id("train_date"));
+        fromTimeFIeld.clear();
+        fromTimeFIeld.sendKeys(fromTime);
+        WebElement GCButton = driver.findElement(By.xpath("//*[@id=\"isHighDan\"]/i"));
+        GCButton.click();
+
+        WebElement query = driver.findElement(By.id("search_one"));
+        query.click();
+
+        driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
+        Thread.sleep(1000);
+        takeScreenshot(screenShot);
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "北京北,南京,2024-10-14,12306_search_student_gd_001.png",
+            "北京北,南京,2024-10-15,12306_search_student_gd_002.png",
+            "北京北,南京,2024-10-20,12306_search_student_gd_003.png",
+            "北京北,南京,2024-10-29,12306_search_student_gd_004.png",
+            "北京北,南京,2024-10-30,12306_search_student_gd_005.png"
+    })
+    public void testSearchStuGd(String from,String to,String fromTime,String screenShot) throws InternalError, InterruptedException {
+        WebElement fromField = driver.findElement(By.id("fromStationText"));
+        fromField.sendKeys(from+Keys.ENTER);
+        WebElement toField = driver.findElement(By.id("toStationText"));
+        toField.sendKeys(to+Keys.ENTER);
+        WebElement fromTimeFIeld = driver.findElement(By.id("train_date"));
+        fromTimeFIeld.clear();
+        fromTimeFIeld.sendKeys(fromTime);
+        WebElement StudentButton = driver.findElement(By.xpath("//*[@id=\"isStudentDan\"]/i"));
+        StudentButton.click();
+        WebElement GCButton = driver.findElement(By.xpath("//*[@id=\"isHighDan\"]/i"));
+        GCButton.click();
+
+        WebElement query = driver.findElement(By.id("search_one"));
+        query.click();
+
+        driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
+        Thread.sleep(1000);
+        takeScreenshot(screenShot);
+    }
     @AfterEach
     public void teardown(){
         this.driver.quit();
